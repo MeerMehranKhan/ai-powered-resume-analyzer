@@ -1,0 +1,29 @@
+Ava Patel
+Chicago, IL | ava.patel@email.com | +1 (555) 123-8899
+linkedin.com/in/avapatel | github.com/avapatel
+
+SUMMARY
+Data analyst and machine learning engineer with 4+ years of experience turning product and operational data into dashboards, forecasts, and automation workflows. Strong background in Python, SQL, statistics, and stakeholder communication across analytics, product, and operations teams.
+
+EXPERIENCE
+Senior Data Analyst | Northwind Health | 2023 - Present
+- Built Python and SQL pipelines that consolidated claims, CRM, and support data, reducing weekly reporting time by 35%.
+- Designed KPI dashboards for growth and operations teams, improving weekly business reviews and surfacing conversion bottlenecks faster.
+- Partnered with product managers and operations leaders to define reporting requirements and translate ambiguous questions into clear analyses.
+- Developed a churn-risk model in scikit-learn that improved outreach prioritization for the retention team.
+
+Data Analyst | BrightPath Commerce | 2021 - 2023
+- Automated recurring Excel and Python reporting workflows for revenue, retention, and fulfillment teams.
+- Analyzed customer behavior and campaign performance to identify drivers of repeat purchase and cart abandonment.
+- Presented findings to marketing and business stakeholders with concise recommendations and follow-up analyses.
+
+PROJECTS
+- Developed a demand forecasting project with Python, pandas, and time-series modeling to predict weekly order volume for a retail dataset.
+- Built a Streamlit analytics app that tracks funnel metrics and surfaces product adoption trends for internal stakeholders.
+
+SKILLS
+Python, SQL, pandas, NumPy, scikit-learn, statistics, data analysis, dashboards, reporting, Streamlit, Excel, Git, stakeholder communication, forecasting, machine learning
+
+EDUCATION
+B.S. in Information Systems
+University of Illinois Chicago

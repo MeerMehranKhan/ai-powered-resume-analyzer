@@ -1,0 +1,21 @@
+Senior Product Data Analyst
+
+We are looking for a Senior Product Data Analyst to support our growth and product teams with decision-ready analysis, experimentation, and dashboarding.
+
+Responsibilities
+- Build and maintain Tableau dashboards for product, growth, and executive stakeholders.
+- Partner with product managers, designers, and engineers to define success metrics and evaluate feature performance.
+- Use SQL and Python to analyze funnel performance, retention, and monetization trends.
+- Translate business questions into clear analytical plans and executive-ready insights.
+- Design and evaluate A/B tests and broader experimentation strategy.
+
+Requirements
+- Advanced SQL and Python skills
+- Strong statistics and product analytics background
+- Experience with Tableau, stakeholder communication, and dashboard design
+- Experience running A/B testing or experimentation programs
+- Comfortable working cross-functionally in a fast-moving product environment
+
+Nice to have
+- Experience with Snowflake or dbt
+- Familiarity with machine learning for segmentation or predictive use cases
