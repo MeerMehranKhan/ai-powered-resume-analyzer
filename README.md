@@ -2,8 +2,6 @@
 
 An AI-powered, local-first Streamlit app that analyzes a resume against a job description and returns an explainable match score, keyword gaps, ATS feedback, section-level coaching, bullet improvement suggestions, and downloadable reports.
 
-This project is designed to be portfolio-ready: cleanly structured, easy to demo, understandable to Python beginners, and thoughtful enough to discuss in a real interview.
-
 ## Why This Project Matters
 
 Most resume tools either feel shallow or hide their logic behind a black box. This project aims for a more credible middle ground:
