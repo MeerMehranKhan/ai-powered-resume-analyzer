@@ -4,7 +4,7 @@ An AI-powered, local-first Streamlit app that analyzes a resume against a job de
 
 ## Why This Project Matters
 
-Most resume tools either feel shallow or hide their logic behind a black box. This project aims for a more credible middle ground:
+I built this because most resume tools either give vague feedback or rely too heavily on black-box AI. I wanted something that could explain why a resume matched a role and point out practical improvements. This project aims for a more credible middle ground:
 
 - local-first analysis with no required external API
 - transparent scoring instead of vague "AI magic"
@@ -200,6 +200,13 @@ Add screenshots here after running the app locally:
 - The default semantic layer works locally via TF-IDF; embeddings are optional rather than required.
 - Bullet rewrite suggestions are rule-based and conservative on purpose so the app does not fabricate experience.
 
+## Challenges I Faced
+
+- Resume formats vary a lot, which made section detection difficult
+- Some PDFs contain messy extracted text, especially multi-column resumes
+- Balancing explainability and scoring accuracy was harder than expected
+- I wanted the app to work locally without depending on external APIs
+
 ## Future Improvements
 
 - OCR support for scanned resumes
@@ -208,7 +215,3 @@ Add screenshots here after running the app locally:
 - FastAPI backend and database for saved analyses
 - Optional LLM-generated explanations behind an environment flag
 - Recruiter-side analytics across multiple resumes
-
-## Resume Bullet You Can Reuse
-
-Built a local-first AI resume analyzer in Python that parses PDF resumes, scores job fit with explainable NLP heuristics, surfaces ATS and keyword gaps, and generates downloadable Markdown/PDF reports through a polished Streamlit interface.
