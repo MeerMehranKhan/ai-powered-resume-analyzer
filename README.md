@@ -202,23 +202,13 @@ Add screenshots here after running the app locally:
 
 ## Future Improvements
 
-- Add OCR support for scanned resumes
-- Add job-description weighting for "must-have" vs "nice-to-have" requirements
+- OCR support for scanned resumes
+- Job-description weighting for "must-have" vs "nice-to-have" requirements
 - Support Word documents in addition to PDF
-- Add a FastAPI backend and database for saved analyses
-- Add optional LLM-generated explanations behind an environment flag
-- Add recruiter-side analytics across multiple resumes
+- FastAPI backend and database for saved analyses
+- Optional LLM-generated explanations behind an environment flag
+- Recruiter-side analytics across multiple resumes
 
 ## Resume Bullet You Can Reuse
 
 Built a local-first AI resume analyzer in Python that parses PDF resumes, scores job fit with explainable NLP heuristics, surfaces ATS and keyword gaps, and generates downloadable Markdown/PDF reports through a polished Streamlit interface.
-
-## Notes for Modification
-
-If you want to extend the project later:
-
-- add or refine skills in `resume_analyzer/constants.py`
-- tune weights in `resume_analyzer/constants.py`
-- add new ATS heuristics in `resume_analyzer/scoring.py`
-- customize the report layout in `resume_analyzer/reporting.py`
-- add API or LLM integrations behind `resume_analyzer/service.py` without changing the UI contract
