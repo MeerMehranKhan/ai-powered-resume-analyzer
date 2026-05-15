@@ -50,8 +50,24 @@ class SemanticSimilarityEngine:
         return SentenceTransformer(settings.embedding_model_name)
 
     @staticmethod
+    def _calibrate_tfidf(raw: float) -> float:
+        """Calibrate raw TF-IDF cosine similarity into a more useful range.
+
+        Raw TF-IDF cosine similarity between short documents (resumes and
+        job descriptions) clusters between 0.10 and 0.30 even for strongly
+        related pairs.  This sigmoid-inspired mapping stretches that useful
+        band so that clearly related pairs score ~0.50-0.70 while unrelated
+        pairs remain low.
+        """
+
+        stretched = raw * 2.8 + 0.12
+        return clamp(stretched, 0.0, 1.0)
+
+    @staticmethod
     def _tfidf_score(resume_text: str, job_description: str) -> float:
         vectorizer = TfidfVectorizer(stop_words="english", ngram_range=(1, 2), max_features=4000)
         matrix = vectorizer.fit_transform([resume_text, job_description])
-        similarity = cosine_similarity(matrix[0:1], matrix[1:2])[0][0]
-        return clamp(float(similarity), 0.0, 1.0)
+        raw_similarity = cosine_similarity(matrix[0:1], matrix[1:2])[0][0]
+        calibrated = SemanticSimilarityEngine._calibrate_tfidf(float(raw_similarity))
+        return clamp(calibrated, 0.0, 1.0)
+

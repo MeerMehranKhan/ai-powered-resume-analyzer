@@ -72,6 +72,11 @@ def _strengthen_opening(text: str) -> str:
             return replacement
 
     if not starts_with_action_verb(cleaned):
+        # Avoid prepending a verb when the text already looks action-led
+        # (e.g. an action verb that was not in the canonical set).
+        first_word = cleaned.split()[0].lower() if cleaned.split() else ""
+        if first_word.endswith(("ed", "ied", "ted", "led", "red", "zed")):
+            return cleaned[0].upper() + cleaned[1:]
         return f"Delivered {cleaned[0].lower() + cleaned[1:]}" if cleaned else cleaned
     return cleaned[0].upper() + cleaned[1:]
 

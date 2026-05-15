@@ -10,9 +10,19 @@ from resume_analyzer.constants import ACTION_VERBS
 
 TOKEN_PATTERN = re.compile(r"[A-Za-z][A-Za-z0-9+#./-]*")
 METRIC_PATTERN = re.compile(
-    r"(\d+[%x]?|\$\d+|\bpercent\b|\bminutes?\b|\bhours?\b|\bdays?\b|\bweeks?\b|\bmonths?\b|\byears?\b)",
+    r"("
+    r"\d+\s*[%x]"                         # 35%, 3x
+    r"|#\d+"                               # #1
+    r"|\$[\d,.]+[KkMmBb]?"                 # $50K, $1.2M
+    r"|\d+[\d,]*\+?"                       # 100, 4+, 1,000
+    r"|\b\d+(?:st|nd|rd|th)\b"             # 1st, 2nd, 3rd
+    r"|\b(?:percent|percentage)\b"         # percent
+    r"|\b(?:half|double|triple|twice)\b"   # multipliers
+    r"|\b\d+\s*(?:minutes?|hours?|days?|weeks?|months?|years?|teams?|clients?|users?|customers?|projects?)\b"
+    r")",
     re.IGNORECASE,
 )
+
 
 
 def normalize_whitespace(text: str) -> str:
