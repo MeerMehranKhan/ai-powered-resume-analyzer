@@ -29,7 +29,7 @@ CUSTOM_CSS = """
         --surface: #ffffff;
         --surface-soft: #eef2f4;
         --ink: #17212b;
-        --muted: #566475;
+        --muted: #4a5568;
         --line: #d7dfe6;
         --teal-soft: #e7f3f2;
         --amber-soft: #fbefe2;
@@ -50,11 +50,11 @@ CUSTOM_CSS = """
     .hero-card {
         background: linear-gradient(135deg, #1f3a5f 0%, #294c71 58%, #2f6f74 100%);
         border-radius: 22px;
-        padding: 1.45rem 1.55rem;
+        padding: 1.6rem 1.8rem 1.4rem 1.8rem;
         color: #ffffff;
         border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 18px 42px rgba(24, 37, 53, 0.12);
-        margin-bottom: 1rem;
+        box-shadow: 0 18px 42px rgba(24, 37, 53, 0.14);
+        margin-bottom: 1.2rem;
     }
     .hero-kicker {
         text-transform: uppercase;
@@ -76,11 +76,28 @@ CUSTOM_CSS = """
         color: rgba(255, 255, 255, 0.9);
         max-width: 920px;
     }
+    .hero-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+    .hero-pills .app-pill {
+        display: inline-block;
+        padding: 0.34rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        color: #ffffff;
+    }
     .pill-row {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
-        margin-top: 0.95rem;
+        margin-top: 0.65rem;
+        margin-bottom: 0.2rem;
     }
     .app-pill {
         display: inline-block;
@@ -89,11 +106,11 @@ CUSTOM_CSS = """
         font-size: 0.82rem;
         font-weight: 600;
         border: 1px solid transparent;
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
     }
-    .pill-light {
-        background: rgba(255, 255, 255, 0.14);
-        border-color: rgba(255, 255, 255, 0.18);
-        color: #ffffff;
+    .app-pill:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
     .pill-navy {
         background: var(--navy-soft);
@@ -103,19 +120,19 @@ CUSTOM_CSS = """
     .pill-teal {
         background: var(--teal-soft);
         border-color: #c9dfdd;
-        color: #24595d;
+        color: #1a4a4e;
     }
     .pill-amber {
         background: var(--amber-soft);
         border-color: #efd5b7;
-        color: #9b5f1e;
+        color: #8a5318;
     }
     .section-kicker {
         text-transform: uppercase;
         letter-spacing: 0.08em;
         font-size: 0.76rem;
         font-weight: 700;
-        color: #617182;
+        color: var(--navy);
         margin-bottom: 0.25rem;
     }
     .muted-line {
@@ -134,7 +151,7 @@ CUSTOM_CSS = """
         padding: 0;
     }
     div[data-testid="stMetricLabel"] {
-        color: #617182;
+        color: var(--muted);
         font-size: 0.8rem;
         font-weight: 700;
         letter-spacing: 0.05em;
@@ -150,32 +167,69 @@ CUSTOM_CSS = """
         background: #27476a;
         color: #ffffff;
         font-weight: 600;
+        transition: background 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
     }
     .stButton > button:hover, .stDownloadButton > button:hover {
         border-color: #2f6f74;
         background: #2f6f74;
         color: #ffffff;
+        transform: translateY(-1px);
+    }
+    .stButton > button:active, .stDownloadButton > button:active {
+        transform: translateY(0);
     }
     .stTextArea textarea, .stFileUploader {
         border-radius: 14px;
     }
     .stTabs [data-baseweb="tab-list"] {
         gap: 0.35rem;
+        border-bottom: 2px solid var(--line);
     }
     .stTabs [data-baseweb="tab"] {
         height: 2.8rem;
         background: rgba(255, 255, 255, 0.86);
         border: 1px solid var(--line);
+        border-bottom: none;
         border-radius: 12px 12px 0 0;
         padding: 0 1rem;
         font-weight: 600;
+        color: var(--muted);
+        transition: background 0.2s ease, color 0.2s ease;
     }
     .stTabs [aria-selected="true"] {
-        border-color: #adc4da;
+        background: #ffffff;
+        border-color: var(--line);
+        border-bottom: 2px solid var(--navy);
         color: var(--navy);
+        font-weight: 700;
     }
     .stAlert {
         border-radius: 14px;
+    }
+    /* Fix dataframe table overflow */
+    .stDataFrame {
+        overflow-x: auto;
+    }
+    .stDataFrame table {
+        font-size: 0.88rem;
+    }
+    /* Ensure metric cards have consistent height */
+    div[data-testid="stVerticalBlockBorderWrapper"] div[data-testid="stMetric"] {
+        min-height: 4.5rem;
+    }
+    /* Progress bar styling */
+    .stProgress > div > div {
+        border-radius: 6px;
+        background: linear-gradient(90deg, var(--navy) 0%, var(--teal) 100%);
+    }
+    /* Divider styling */
+    hr {
+        border-color: var(--line);
+        opacity: 0.5;
+    }
+    /* Caption text improved contrast */
+    .stCaption, .stMarkdown small {
+        color: var(--muted);
     }
 </style>
 """
@@ -245,18 +299,16 @@ def render_header() -> None:
                 Analyze a resume against a target job with transparent scoring, grounded keyword matching,
                 ATS diagnostics, section-level review, and report exports that are easy to share.
             </div>
+            <div class="hero-pills">
+                <span class="app-pill">&#x1F535; Trust-focused navy base</span>
+                <span class="app-pill">&#x1F7E2; Teal for positive signals</span>
+                <span class="app-pill">&#x1F7E0; Amber for gaps and risks</span>
+            </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
-    render_pills(
-        [
-            "Trust-focused navy base",
-            "Teal for positive signals",
-            "Amber for gaps and risks",
-        ],
-        light=True,
-    )
+
 
 
 def render_panel(title: str, body: str, bullets: list[str] | None = None) -> None:
