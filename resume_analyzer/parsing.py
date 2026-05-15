@@ -40,6 +40,12 @@ def extract_text_from_pdf(file_bytes: bytes) -> str:
     with document:
         if document.page_count == 0:
             raise ResumeParsingError("The uploaded PDF has no pages.")
+        
+        # Prevent users from uploading entire books
+        if document.page_count > 10:
+            raise ResumeParsingError(
+                f"The uploaded PDF is too long ({document.page_count} pages). Please upload a standard resume (max 10 pages)."
+            )
 
         for page in document:
             page_text.append(page.get_text("text"))
@@ -49,8 +55,14 @@ def extract_text_from_pdf(file_bytes: bytes) -> str:
         raise ResumeParsingError(
             "The PDF does not contain enough readable text. This local-first build expects a text-based PDF, not a scanned image."
         )
+        
+    if len(extracted_text) > 50000:
+        raise ResumeParsingError(
+            "The extracted text is excessively long. Please upload a standard resume, not a book or comprehensive manual."
+        )
 
     return extracted_text
+
 
 
 def require_non_empty_text(text: str, label: str) -> str:
